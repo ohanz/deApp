@@ -1,6 +1,7 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Alert, Button, StyleSheet, Text, ToastAndroid, View } from "react-native";
 import { ScrollView } from "react-native";
 import { Dimensions } from 'react-native';
+import Toast from "react-native-toast-message";
 
 var screenWidth = Dimensions.get('window').width; //full screen width
 
@@ -40,7 +41,16 @@ const myStyle = StyleSheet.create({
 const date = new Date();
 const showYear = date.getFullYear(); 
 
+
+
 export default function Index() {
+  const showToast = () => {
+  Toast.show({
+    type: 'success',
+    text1: 'Hello',
+    text2: 'This is some something 👋',
+  });}
+  
   return (
     // <View
     //   style={{
@@ -114,8 +124,11 @@ export default function Index() {
       <Text style={{color: "#dee", fontWeight: 'bold' ,position: 'relative', fontSize: 17,
       }}>Copyright&copy;{showYear}</Text>
      {/* <View style={{flex: 1, backgroundColor: 'red'}} /> */}
-      <Text style={{ backgroundColor: 'darkorange', borderRadius: 20, padding: 10, fontSize: 18}}>Login Now</Text>
-      <Text style={{ backgroundColor: 'green', padding: 10, fontSize: 20, fontWeight: "bold"}}>Sign Up</Text>
+      <Button title='Login Now' onPress={showToast}
+      color= 'darkorange' />
+        <Button title="Sign Up"
+      color= 'green' onPress={() => Alert.alert('Simple Button pressed')} />
+      {/* <Text style={{ backgroundColor: 'green', padding: 10, fontSize: 20, fontWeight: "bold"}}>Sign Up</Text> */}
       </View>
 
     </View>
