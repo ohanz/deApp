@@ -28,11 +28,12 @@ const myStyle = StyleSheet.create({
   footerStyle: {
     position: 'absolute',
     bottom: 0,
-    width: screenWidth,
+    width: '100%',
     height: 50,
      backgroundColor: "#009900",
-    justifyContent: 'center',
-    alignItems: 'center',
+     flexDirection: 'row',
+     justifyContent: 'space-around',
+     alignItems: 'center', alignContent: 'space-between'
   },
 })
 
@@ -110,8 +111,11 @@ export default function Index() {
 
         <View style={myStyle.footerStyle}>
       {/* footer */}
-      <Text style={{color: "#fff", fontSize: 20,
+      <Text style={{color: "#dee", fontWeight: 'bold' ,position: 'relative', fontSize: 17,
       }}>Copyright&copy;{showYear}</Text>
+     {/* <View style={{flex: 1, backgroundColor: 'red'}} /> */}
+      <Text style={{ backgroundColor: 'darkorange', borderRadius: 20, padding: 10, fontSize: 18}}>Login Now</Text>
+      <Text style={{ backgroundColor: 'green', padding: 10, fontSize: 20, fontWeight: "bold"}}>Sign Up</Text>
       </View>
 
     </View>
