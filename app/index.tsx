@@ -1,4 +1,4 @@
-import { Alert, Button, StyleSheet, Text, ToastAndroid, View } from "react-native";
+import { Alert, Button, Pressable, StyleSheet, Text, ToastAndroid, View } from "react-native";
 import { ScrollView } from "react-native";
 import { Dimensions } from 'react-native';
 import Toast from "react-native-toast-message";
@@ -41,15 +41,55 @@ const myStyle = StyleSheet.create({
 const date = new Date();
 const showYear = date.getFullYear(); 
 
-
+var logBoo = false;
 
 export default function Index() {
+
+  const showToast0 = () => {
+    ToastAndroid.showWithGravity(
+      'All Your Base Are Belong To Us',
+      ToastAndroid.SHORT,
+      ToastAndroid.CENTER,
+    );
+  };
+
+  const showAlert = () =>
+    Alert.alert(
+      'Alert Title',
+      'My Alert Msg',
+      [
+        {
+          text: 'Cancel',
+          onPress: () => Alert.alert('Cancel Pressed'),
+          style: 'cancel',
+        },
+      ],
+      {
+        cancelable: true,
+        onDismiss: () =>
+          Alert.alert(
+            'This alert was dismissed by tapping outside of the alert dialog.',
+          ),
+      },
+    );
+
   const showToast = () => {
-  Toast.show({
+    if(logBoo){
+      console.log('true')
+      Toast.show({
     type: 'success',
     text1: 'Hello',
     text2: 'This is some something 👋',
-  });}
+  }); 
+  logBoo = false;
+}
+  else {
+    console.log('false')
+    Alert.alert("You'll be redirected to Login in a moment..")
+    logBoo = true;
+    }
+  }
+  
   
   return (
     // <View
@@ -78,6 +118,7 @@ export default function Index() {
       {/* header */}
       <View style={myStyle.box}>
       <Text style={{fontSize: 25, textAlign: "center"}}>Hello Hyper, Ohanz!</Text>
+      <Pressable onPress={showToast0}><Text>Press Me</Text></Pressable>
       </View>
       
       {/* Body */}
@@ -127,7 +168,7 @@ export default function Index() {
       <Button title='Login Now' onPress={showToast}
       color= 'darkorange' />
         <Button title="Sign Up"
-      color= 'green' onPress={() => Alert.alert('Simple Button pressed')} />
+      color= 'green' onPress={() => logBoo ? showAlert : Alert.alert('Wish to Sign Up Now?')} />
       {/* <Text style={{ backgroundColor: 'green', padding: 10, fontSize: 20, fontWeight: "bold"}}>Sign Up</Text> */}
       </View>
 
