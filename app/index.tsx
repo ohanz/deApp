@@ -1,4 +1,4 @@
-import { Alert, Button, Pressable, StyleSheet, Text, ToastAndroid, View } from "react-native";
+import { Alert, Button, Image, Pressable, StyleSheet, Text, ToastAndroid, View } from "react-native";
 import { ScrollView } from "react-native";
 import { Dimensions } from 'react-native';
 import Toast from "react-native-toast-message";
@@ -13,11 +13,25 @@ const myStyle = StyleSheet.create({
     // backgroundColor:'white',
     backgroundColor: 'rgba(255,255,255,0.6)',
     height: 45,
+    width: '100%',
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.4,
     shadowRadius: 20,
     elevation: 20,
+  },
+  wrapperCustom0: {
+    // borderRadius: 8,
+    // padding: 6,
+    // marginTop: -25,
+    // marginLeft: 'auto',
+    width: 40, height: 40
+  },
+  wrapperCustom1: {
+    borderRadius: 8,
+    padding: 6,
+    marginTop: -25,
+    marginLeft: 'auto',
   },
   containerMain: {
     flex: 1,
@@ -42,6 +56,8 @@ const date = new Date();
 const showYear = date.getFullYear(); 
 
 var logBoo = false;
+
+const pImage = require('./assets/images/favicon.png');
 
 export default function Index() {
 
@@ -117,8 +133,10 @@ export default function Index() {
       style={myStyle.dMain}>
       {/* header */}
       <View style={myStyle.box}>
+      <Image source={pImage}
+       style={myStyle.wrapperCustom0}/>
       <Text style={{fontSize: 25, textAlign: "center"}}>Hello Hyper, Ohanz!</Text>
-      <Pressable onPress={showToast0}><Text>Press Me</Text></Pressable>
+      <Pressable style={myStyle.wrapperCustom1} onPress={showToast0}><Text>Press Me</Text></Pressable>
       </View>
       
       {/* Body */}
@@ -168,7 +186,10 @@ export default function Index() {
       <Button title='Login Now' onPress={showToast}
       color= 'darkorange' />
         <Button title="Sign Up"
-      color= 'green' onPress={() => logBoo ? showAlert : Alert.alert('Wish to Sign Up Now?')} />
+      onPress={showAlert}
+      color= 'green' 
+      // onPress={() => logBoo ? showAlert : Alert.alert('Wish to Sign Up Now?')}
+       />
       {/* <Text style={{ backgroundColor: 'green', padding: 10, fontSize: 20, fontWeight: "bold"}}>Sign Up</Text> */}
       </View>
 
