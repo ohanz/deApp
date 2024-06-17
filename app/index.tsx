@@ -1,20 +1,19 @@
-import { Alert, Button, Image, Pressable, StyleSheet, Text, ToastAndroid, View } from "react-native";
+import { Alert, Button, Image, Platform, Pressable, StyleSheet, Text, ToastAndroid, View } from "react-native";
 import { ScrollView } from "react-native";
 import { Dimensions } from 'react-native';
 import Toast from "react-native-toast-message";
 
 // import pImage from '../assets/images/ihype_confidLogo.png';
 
-var screenWidth = Dimensions.get('window').width; //full screen width
 
 const myStyle = StyleSheet.create({
   dMain: {
    flex: 1, 
   },
   box: {
-    // backgroundColor:'white',
-    backgroundColor: 'rgba(255,255,255,0.6)',
-    height: 45,
+    backgroundColor:'white',
+    // backgroundColor: 'rgba(255,255,255,0.6)',
+    height: 47,
     width: '100%',
     justifyContent: 'center',
     shadowColor: '#000',
@@ -35,8 +34,8 @@ const myStyle = StyleSheet.create({
     // borderRadius: 8,
     // padding: 6,
     // marginTop: -25,
-    margin: 'auto',
-    width: 500, height: 500
+    margin: 'auto', marginBottom: 10,
+    width: '100%', height: 450
   },
   wrapperCustom1: {
     borderRadius: 8,
@@ -63,8 +62,11 @@ const myStyle = StyleSheet.create({
   },
 })
 
+//  Functions
+var screenWidth = Dimensions.get('window').width; //full screen width
 const date = new Date();
 const showYear = date.getFullYear(); 
+var User: string = "Ohanz!";
 
 var logBoo = false;
 
@@ -143,25 +145,43 @@ export default function Index() {
       style={myStyle.dMain}>
       {/* header */}
       <View style={myStyle.box}>
-        {/* <Text>I am</Text> */}
       <Image 
        style={myStyle.wrapperCustom0}
        source={require('../assets/images/ihype_confidLogo.png')}
        /> 
-      <Text style={{fontSize: 25, textAlign: "center"}}>Hello Hyper, Ohanz!</Text>
+       <View style={{margin: 'auto'}}>
+       <Text style={{position: 'relative', textAlign: 'center',
+         top: 5, fontWeight: 'bold', fontStyle: 'italic' }}>
+        (from last activity)</Text>
+        <View style={{flexDirection: 'row'}}>
+        <Text style={{fontSize: 25}}>
+        <Text>Hello, </Text>
+        <Text style={{fontWeight: '700', marginRight: 5}}>{User}</Text>
+        </Text>
+        </View>
+       {/* <Text style={{fontSize: 25}}>{"Hello Hyper, "+User}</Text> */}
+       </View>
+       
       <Pressable style={myStyle.wrapperCustom1} onPress={showToast0}><Text>Press Me</Text></Pressable>
       </View>
       
       {/* Body */}
       <View style={{flex: 0.9, backgroundColor: '#eee'}}>
       <ScrollView style={myStyle.mScroll}>
-            <Text style={{marginBottom: 50}}>scrollable section</Text>
-
+      {/* <View style={{flexDirection: 'row'}}>
+        <Text style={{fontWeight: '700', marginRight: 5}}>Contact Type:</Text>
+        <Text>{User}</Text>
+        </View> */}
+            <Text style={{marginBottom: 30, 
+              marginTop: 5, fontWeight: 400,
+              fontSize: Platform.OS === 'web' ? 30 : 20,}}>
+              Welcome Back, Hyper!
+              </Text>
             <Image 
-       style={myStyle.wrapperCustom2}
-       source={require('../assets/images/deMag.png')}
-       /> 
-            <Text> Main Content Here</Text>
+            style={myStyle.wrapperCustom2}
+             source={require('../assets/images/deMag.png')}
+             /> 
+          <Text> Main Content Here</Text>
           <Text> Main Content Here</Text>
           <Text> Main Content Here</Text>
           <Text> Main Content Here</Text>
