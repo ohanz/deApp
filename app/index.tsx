@@ -3,6 +3,8 @@ import { ScrollView } from "react-native";
 import { Dimensions } from 'react-native';
 import Toast from "react-native-toast-message";
 
+// import pImage from '../assets/images/ihype_confidLogo.png';
+
 var screenWidth = Dimensions.get('window').width; //full screen width
 
 const myStyle = StyleSheet.create({
@@ -57,7 +59,6 @@ const showYear = date.getFullYear();
 
 var logBoo = false;
 
-const pImage = require('./assets/images/favicon.png');
 
 export default function Index() {
 
@@ -133,8 +134,10 @@ export default function Index() {
       style={myStyle.dMain}>
       {/* header */}
       <View style={myStyle.box}>
-      <Image source={pImage}
-       style={myStyle.wrapperCustom0}/>
+      {/* <Image 
+       style={myStyle.wrapperCustom0}
+       source={require('../assets/images/ihype_confidLogo.png')}
+       />  */}
       <Text style={{fontSize: 25, textAlign: "center"}}>Hello Hyper, Ohanz!</Text>
       <Pressable style={myStyle.wrapperCustom1} onPress={showToast0}><Text>Press Me</Text></Pressable>
       </View>
@@ -143,6 +146,11 @@ export default function Index() {
       <View style={{flex: 0.9, backgroundColor: '#eee'}}>
       <ScrollView style={myStyle.mScroll}>
             <Text style={{marginBottom: 50}}>scrollable section</Text>
+
+            <Image 
+       style={myStyle.wrapperCustom0}
+       source={require('../assets/images/ihype_confidLogo.png')}
+       /> 
             <Text> Main Content Here</Text>
           <Text> Main Content Here</Text>
           <Text> Main Content Here</Text>
