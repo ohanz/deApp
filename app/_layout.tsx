@@ -2,7 +2,7 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import LandScreen from "@/app/LandingScreen";
 // import LaunchScreen from "@/app/launchScreen";
-import ProfileScreen from "@/app/profileScreen";
+import ProfileScreen from "@/app/ProfileScreen";
 import HomeScreen from "@/app/HomeScreen";
 import SignUp from "./SignUp";
 import Login from "./Login";

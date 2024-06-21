@@ -114,11 +114,18 @@ export default function LandingScreen() {
 }
   else {
     console.log('false')
-    Alert.alert("You'll be redirected to Login in a moment..")
+    delayAlert
     logBoo = true;
     }
   }
   
+  const delayAlert =
+    setTimeout(() => {
+        Alert.alert("You'll be redirected to Login in a moment..")
+        console.log("I'll print third after 3 second");
+    }, 3000);
+   
+
   
   return (
     // <View
