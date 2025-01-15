@@ -74,33 +74,54 @@ var logBoo = false;
 
 export default function LandingScreen() {
 
+  // General function
+  let webPlatform = Platform.OS === 'web' ? true : false;
+  const str = 'All Your Base Are To Belong To Us'
   const showToast0 = () => {
-    ToastAndroid.showWithGravity(
-      'All Your Base Are Belong To Us',
-      ToastAndroid.SHORT,
-      ToastAndroid.CENTER,
-    );
+    if (webPlatform){
+      alert(str)
+      console.log('web platform')
+    }
+    else{
+      ToastAndroid.showWithGravity(
+        str,
+        ToastAndroid.SHORT,
+        ToastAndroid.CENTER,
+      );
+      console.log('other platform')
+    }
+   
   };
 
-  const showAlert = () =>
-    Alert.alert(
-      'Alert Title',
-      'My Alert Msg',
-      [
+  const showAlert = () =>{
+    if(!webPlatform){
+      Alert.alert(
+        'Alert Title',
+        'My Alert Msg',
+        [
+          {
+            text: 'Cancel',
+            onPress: () => Alert.alert('Cancel Pressed'),
+            style: 'cancel',
+          },
+        ],
         {
-          text: 'Cancel',
-          onPress: () => Alert.alert('Cancel Pressed'),
-          style: 'cancel',
+          cancelable: true,
+          onDismiss: () =>
+            Alert.alert(
+              'This alert was dismissed by tapping outside of the alert dialog.',
+            ),
         },
-      ],
-      {
-        cancelable: true,
-        onDismiss: () =>
-          Alert.alert(
-            'This alert was dismissed by tapping outside of the alert dialog.',
-          ),
-      },
-    );
+      );
+    }
+     else{
+      // Web Version
+    }
+    }
+   
+  
+    
+    
 
   const showToast = () => {
     if(logBoo){

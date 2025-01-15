@@ -3,6 +3,11 @@
 // import React from 'react';
 import {Alert, Button, StyleSheet, Text, View} from 'react-native';
 
+const pStyles = StyleSheet.create({
+  pMain: {
+    flex: 1,
+  },
+})
 
 const ProfileScreen = () => {
 
@@ -11,7 +16,7 @@ const ProfileScreen = () => {
   };
 
   return (
-    <View style={{}}>
+    <View style={pStyles.pMain}>
       <Text style={{color: 'black'}}>ProfileScreen</Text>
       <View style={{marginTop: 10}}>
         <Button title="Go to Home" onPress={onHandlePress} />
