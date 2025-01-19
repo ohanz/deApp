@@ -78,7 +78,7 @@ export default function LandingScreen() {
   let webPlatform = Platform.OS === 'web' ? true : false;
   const str = 'All Your Base Are To Belong To Us'
   const showToast0 = () => {
-    if (webPlatform){
+    if (typeof window !== "undefined"){
       alert(str)
       console.log('web platform')
     }
@@ -94,7 +94,7 @@ export default function LandingScreen() {
   };
 
   const showAlert = () =>{
-    if(!webPlatform){
+    if(typeof window === "undefined"){
       Alert.alert(
         'Alert Title',
         'My Alert Msg',
@@ -116,12 +116,16 @@ export default function LandingScreen() {
     }
      else{
       // Web Version
+      if(window.confirm("Alert Compat for Web")){
+        alert('Ok was pressed')
+      }
+      else{
+        alert('Canceled was pressed')
+      }
+      
     }
     }
-   
   
-    
-    
 
   const showToast = () => {
     if(logBoo){
@@ -135,15 +139,25 @@ export default function LandingScreen() {
 }
   else {
     console.log('false')
-    delayAlert
+    delayAlert;
     logBoo = true;
     }
   }
   
   const delayAlert =
     setTimeout(() => {
-        Alert.alert("You'll be redirected to Login in a moment..")
+      // typeof window === "undefined = ALT Method
+       if(typeof window === "undefined"){
+        Alert.alert("You'll be redirected to Login Screen in a moment..");
+       }
+       else {
+        alert("You'll be redirected to Login Page in a moment.."); 
+        } 
         console.log("I'll print third after 3 second");
+        console.log(webPlatform)
+        // setInterval(() => {
+        //   // redirect after 1min with confirm dialog and if canceled, show the login button
+        // })
     }, 3000);
    
 
