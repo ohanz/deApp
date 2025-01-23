@@ -1,10 +1,19 @@
+import { StackNavigationProp } from "@react-navigation/stack";
 import { Alert, Button, Image, Platform, Pressable, StyleSheet, Text, ToastAndroid, View } from "react-native";
 import { ScrollView } from "react-native";
 import { Dimensions } from 'react-native';
 import Toast from "react-native-toast-message";
+import { RootStackParamList } from "./_layout";
+
 
 // import pImage from '../assets/images/ihype_confidLogo.png';
 
+
+type LandingScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Landing'>;
+
+interface LandingScreenProps{
+  navigation: LandingScreenNavigationProp;
+}
 
 const myStyle = StyleSheet.create({
   dMain: {
@@ -67,7 +76,7 @@ var User: string = "Ohanz!";
 var logBoo = false;
 
 
-export default function LandingScreen() {
+export default function LandingScreen({ navigation }: LandingScreenProps) {
 
   // General function
   let webPlatform = Platform.OS === 'web' ? true : false;
@@ -88,7 +97,7 @@ export default function LandingScreen() {
    
   };
 
-  const showAlert = () =>{
+  const showAlertSignUp = () =>{
     if(typeof window === "undefined"){
       Alert.alert(
         'Alert Title',
@@ -119,27 +128,17 @@ export default function LandingScreen() {
       }
       
     }
-    }
-  
 
-  const showToast = () => {
-    if(logBoo){
-      console.log('true')
-      Toast.show({
-    type: 'success',
-    text1: 'Hello',
-    text2: 'This is some something 👋',
-  }); 
-  logBoo = false;
-}
-  else {
-    console.log('false')
-    delayAlert;
-    logBoo = true;
-    }
+    setTimeout(() => {
+      navigation.navigate('SignUp');
+    }, 2000)
+
   }
   
-  const delayAlert =
+
+  const showToastLogin = () => {
+    
+    const delayAlert =
     setTimeout(() => {
       // typeof window === "undefined = ALT Method
        if(typeof window === "undefined"){
@@ -150,10 +149,36 @@ export default function LandingScreen() {
         } 
         console.log("I'll print third after 3 second");
         console.log(webPlatform)
+        setTimeout(() => {
+          navigation.navigate('Login');
+        }, 2000)
+       
         // setInterval(() => {
         //   // redirect after 1min with confirm dialog and if canceled, show the login button
         // })
     }, 3000);
+
+    if(typeof window === "undefined"){
+      if(logBoo){
+        console.log('true')
+        Toast.show({
+      type: 'success',
+      text1: 'Hello',
+      text2: 'This is some something 👋',
+    }); 
+    logBoo = false;
+  }
+    else {
+      console.log('false')
+      delayAlert;
+      logBoo = true;}
+    }
+    else{
+     console.log("Web Alt UI");
+    }
+    
+  }
+  
    
 
   
@@ -259,10 +284,10 @@ export default function LandingScreen() {
       <Text style={{color: "#dee", fontWeight: 'bold' ,position: 'relative', fontSize: 17,
       }}>Copyright&copy;{showYear}</Text>
      {/* <View style={{flex: 1, backgroundColor: 'red'}} /> */}
-      <Button title='Login Now' onPress={showToast}
+      <Button title='Login Now' onPress={showToastLogin}
       color= 'darkorange' />
         <Button title="Sign Up"
-      onPress={showAlert}
+      onPress={showAlertSignUp}
       color= 'green' 
       // onPress={() => logBoo ? showAlert : Alert.alert('Wish to Sign Up Now?')}
        />
