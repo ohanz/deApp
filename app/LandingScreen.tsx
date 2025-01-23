@@ -8,11 +8,10 @@ import Toast from "react-native-toast-message";
 
 const myStyle = StyleSheet.create({
   dMain: {
-   flex: 1, 
+    flex: 1,
   },
   box: {
-    backgroundColor:'white',
-    // backgroundColor: 'rgba(255,255,255,0.6)',
+    backgroundColor: 'white',
     height: 47,
     width: '100%',
     justifyContent: 'center',
@@ -23,19 +22,14 @@ const myStyle = StyleSheet.create({
     elevation: 20,
   },
   wrapperCustom0: {
-    // borderRadius: 8,
-    // padding: 6,
-    // marginTop: -25,
-    marginRight: 'auto',
-    position: 'absolute', left: 10,
-    width: 40, height: 40
+    position: 'absolute',
+    left: 10,
+    width: 40,
+    height: 40,
   },
   wrapperCustom2: {
-    // borderRadius: 8,
-    // padding: 6,
-    // marginTop: -25,
-    margin: 'auto', marginBottom: 10,
-    width: '100%', height: 450
+    width: '100%',
+    height: 450,
   },
   wrapperCustom1: {
     borderRadius: 8,
@@ -47,21 +41,22 @@ const myStyle = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
   },
-  mScroll:{
-   paddingBottom: 10, paddingStart: 5, 
+  mScroll: {
+    overflow: "scroll",
+    paddingBottom: 100,
+    paddingStart: 5,
   },
   footerStyle: {
-    zIndex: 1,
-    position: 'absolute',
+    position:"fixed",
     bottom: 0,
     width: '100%',
     height: 50,
-     backgroundColor: "#009900",
-     flexDirection: 'row',
-     justifyContent: 'space-around',
-     alignItems: 'center', alignContent: 'space-between'
+    backgroundColor: '#009900',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
   },
-})
+});
 
 //  Functions
 var screenWidth = Dimensions.get('window').width; //full screen width
@@ -209,7 +204,7 @@ export default function LandingScreen() {
       </View>
       
       {/* Body */}
-      <View style={{flex: 0.9, backgroundColor: '#eee'}}>
+      <View style={{ height: 500, backgroundColor: '#eee'}}>
       <ScrollView style={myStyle.mScroll}>
       {/* <View style={{flexDirection: 'row'}}>
         <Text style={{fontWeight: '700', marginRight: 5}}>Contact Type:</Text>
@@ -224,7 +219,7 @@ export default function LandingScreen() {
             style={myStyle.wrapperCustom2}
              source={require('../assets/images/deMag.png')}
              /> 
-          <Text> Main Content Here</Text>
+          <Text> Main Content Here(0)</Text>
           <Text> Main Content Here</Text>
           <Text> Main Content Here</Text>
           <Text> Main Content Here</Text>
