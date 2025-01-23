@@ -4,6 +4,7 @@ import { ScrollView } from "react-native";
 import { Dimensions } from 'react-native';
 import Toast from "react-native-toast-message";
 import { RootStackParamList } from "./_layout";
+import myStyle from'./mystyles';  
 
 
 // import pImage from '../assets/images/ihype_confidLogo.png';
@@ -15,57 +16,7 @@ interface LandingScreenProps{
   navigation: LandingScreenNavigationProp;
 }
 
-const myStyle = StyleSheet.create({
-  dMain: {
-    flex: 1,
-  },
-  box: {
-    backgroundColor: 'white',
-    height: 47,
-    width: '100%',
-    justifyContent: 'center',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.4,
-    shadowRadius: 20,
-    elevation: 20,
-  },
-  wrapperCustom0: {
-    position: 'absolute',
-    left: 10,
-    width: 40,
-    height: 40,
-  },
-  wrapperCustom2: {
-    width: '100%',
-    height: 450,
-  },
-  wrapperCustom1: {
-    borderRadius: 8,
-    padding: 6,
-    marginTop: -25,
-    marginLeft: 'auto',
-  },
-  containerMain: {
-    flex: 1,
-    alignItems: 'center',
-  },
-  mScroll: {
-    overflow: "scroll",
-    paddingBottom: 100,
-    paddingStart: 5,
-  },
-  footerStyle: {
-    position:"fixed",
-    bottom: 0,
-    width: '100%',
-    height: 50,
-    backgroundColor: '#009900',
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center',
-  },
-});
+// Created External CSS
 
 //  Functions
 var screenWidth = Dimensions.get('window').width; //full screen width
@@ -77,6 +28,9 @@ var logBoo = false;
 
 
 export default function LandingScreen({ navigation }: LandingScreenProps) {
+   // General Notice
+   /*This codebase performs simple functions and also test Platform Compatability*/
+   // Dont get confused!
 
   // General function
   let webPlatform = Platform.OS === 'web' ? true : false;
