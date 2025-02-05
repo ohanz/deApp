@@ -105,12 +105,12 @@ export default function LandingScreen({ navigation }: LandingScreenProps) {
         console.log(webPlatform)
         setTimeout(() => {
           navigation.navigate('Login');
-        }, 2000)
+        }, 1000)
        
         // setInterval(() => {
         //   // redirect after 1min with confirm dialog and if canceled, show the login button
         // })
-    }, 3000);
+    }, 2000);
 
     if(typeof window === "undefined"){
       if(logBoo){
