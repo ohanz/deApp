@@ -19,6 +19,10 @@ type FormData = {
 
 const Login = ({navigation}: LoginScreenProps) => {
 
+  const goSignUp = () => {
+    navigation.navigate('SignUp');
+  }
+
   const onHandlePress = () => {
     // Alert.alert('Pressed.');
     navigation.goBack();
@@ -34,9 +38,11 @@ const Login = ({navigation}: LoginScreenProps) => {
     console.log(data);
   };
 
+
+
   return (
     <View style={styles.container}>
-      <Text style={{color: 'black'}}>Login Screen</Text>
+      <Text style={{color: 'black', fontSize: 35}}>Welcome. Enter Your Login Details.</Text>
       <View style={{marginTop: 10}}>
         {/* <Button title="Tap Now" onPress={onHandlePress} /> */}
 
@@ -75,9 +81,10 @@ const Login = ({navigation}: LoginScreenProps) => {
       {errors.password && <Text style={styles.error}>This field is required</Text>}
 
       <Button title="Login" onPress={handleSubmit(onSubmit)} />
-      <View style={{marginBlockStart: 50}}/>
-
-        <Button title="Go Back" onPress={onHandlePress} />
+      <View style={{marginBottom: 10}}/>
+      <Button color='green' title="Sign Up Here Instead" onPress={goSignUp} />
+      <View style={{marginBottom: 50}}/>
+        <Button color='black'title="Go Back" onPress={onHandlePress} />
       </View>
     </View>
   );
@@ -94,16 +101,20 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   input: {
-    height: 40,
+    height: 45,
     borderColor: 'gray',
     borderWidth: 1,
-    marginBottom: 10,
+    marginBottom: 15,fontSize:18,
     padding: 10,
   },
   error: {
     color: 'red',
     marginBottom: 10,
   },
+
+  Button:{
+    color: 'black'
+  }
 });
 
 export default Login;
