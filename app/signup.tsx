@@ -1,6 +1,10 @@
+import { useState } from 'react';
 import { StackNavigationProp } from '@react-navigation/stack';
-import {Alert, Button, StyleSheet, Text, View} from 'react-native';
+import {Alert, Button, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native';
+import {Controller, useForm } from 'react-hook-form';
 import { RootStackParamList } from "./_layout";
+import axios from 'axios';
+
 
 type SignUpScreenNavigationPro = StackNavigationProp<RootStackParamList,'SignUp'
 >;
@@ -9,6 +13,13 @@ interface SignuUpScreenProps {
 navigation: SignUpScreenNavigationPro;
 }
 
+
+type FormData = {
+  username: string;
+  password: string;
+};
+
+
 const SignUp = ({ navigation }: SignuUpScreenProps) => {
 
   const onHandlePress = () => {
@@ -16,16 +27,121 @@ const SignUp = ({ navigation }: SignuUpScreenProps) => {
     navigation.goBack();
   };
 
+  const goLogin = () => {
+    // Alert.alert('Pressed');
+    navigation.navigate('Login');
+  };
+
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>();
+
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<String | null>(null);
+
+  const onSubmit = async (data: FormData) => {
+    setLoading(true);
+    try {
+      const response = await axios.post('http://localhost:8081/login', data);
+      const token = response.data.token;
+      // Store the token in secure storage (e.g. AsyncStorage)
+      console.log('Login successful!');
+    } catch (error) {
+      console.log('Login Error:', JSON.stringify(error));
+      setError('An Unknown error occured');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
-    <View style={{}}>
-      <Text style={{color: 'black'}}>SignUp Screen</Text>
+    <View style={style.container}>
+      <Text style={{color: 'black', fontSize: 35}}>SignUp Screen</Text>
       <View style={{marginTop: 10}}>
         {/* <Button title="Sign Now" onPress={onHandlePress} /> */}
+
+        <Text style={style.title}>Sign-Up Form</Text>
+        <Controller
+        control={control}
+        render={({ field: { onChange, onBlur, value } }) => (
+          <TextInput
+          style={style.input}
+            placeholder="Username"
+            onChangeText={onChange}
+            onBlur={onBlur}
+            value={value}
+          />
+        )}
+        name="username"
+        rules={{ required: true }}
+      />
+      {errors.username && <Text style={style.error}>This field is required</Text>}
+
+      <Controller
+        control={control}
+        render={({ field: { onChange, onBlur, value } }) => (
+          <TextInput
+          style={style.input}
+            placeholder="Password"
+            secureTextEntry
+            onChangeText={onChange}
+            onBlur={onBlur}
+            value={value}
+          />
+        )}
+        name="password"
+        rules={{ required: true }}
+      />
+      {errors.password && <Text style={style.error}>This field is required</Text>}
+
+      {/* <Button title="Login" onPress={handleSubmit(onSubmit)} /> */}
+      <TouchableOpacity style={style.button} onPress={handleSubmit(onSubmit)}>
+        <Text style={style.buttonText}>{loading ? 'Loading... ': 'SignUp'}</Text></TouchableOpacity>
+    
+      <View style={{marginBottom: 10}}/>
+      <Button color='green' title="Login Here Instead" onPress={goLogin} />
+      <View style={{marginBottom: 50}}/>
+
         <Button title="Go Back" onPress={onHandlePress} />
 
       </View>
     </View>
   );
 };
+
+const style = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    padding: 20,
+  },
+  title: {
+    fontSize: 24,
+    marginBottom: 20,
+  },
+  input: {
+    height: 45,
+    borderColor: 'gray',
+    borderWidth: 1,
+    marginBottom: 15,fontSize:18,
+    padding: 10,
+  },
+  error: {
+    color: 'red',
+    marginBottom: 10,
+  },
+
+  Button:{
+    color: 'black'
+  },
+  button: {
+    width: '50%', padding: 10, backgroundColor: '#007bff', alignItems: "center",
+  },
+  buttonText: {
+   color: '#ffffff', fontWeight: 'bold', fontSize:18,
+  }
+});
 
 export default SignUp;
