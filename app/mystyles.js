@@ -28,10 +28,15 @@ const myStyle = StyleSheet.create({
     height: 450,
   },
   wrapperCustom1: {
-    borderRadius: 8,
+    // borderRadius: 8,
     padding: 6,
     marginTop: -25,
     marginLeft: 'auto',
+    position: 'relative', bottom: 15, right: 15,
+    backgroundColor: 'green', 
+  },
+  wrapperC1Text: {
+    color: 'white', fontWeight: 'bold',
   },
   containerMain: {
     flex: 1,

@@ -179,7 +179,8 @@ export default function LandingScreen({ navigation }: LandingScreenProps) {
        {/* <Text style={{fontSize: 25}}>{"Hello Hyper, "+User}</Text> */}
        </View>
        
-      <Pressable style={myStyle.wrapperCustom1} onPress={showToast0}><Text>Press Me</Text></Pressable>
+      <Pressable style={myStyle.wrapperCustom1} onPress={showToast0}>
+        <Text style={myStyle.wrapperC1Text}>Press Me</Text></Pressable>
       </View>
       
       {/* Body */}
