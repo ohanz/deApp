@@ -2,6 +2,8 @@
 // import {StackNavigationProp} from '@react-navigation/stack';
 // import React from 'react';
 import {Alert, Button, StyleSheet, Text, View} from 'react-native';
+import { RootStackParamList } from './_layout';
+import { StackNavigationProp } from '@react-navigation/stack';
 
 const pStyles = StyleSheet.create({
   pMain: {
@@ -9,7 +11,14 @@ const pStyles = StyleSheet.create({
   },
 })
 
-const ProfileScreen = () => {
+type ProfileScreenNavigationProp = StackNavigationProp<RootStackParamList,'Profile'
+>;
+
+interface ProfileScreenProps {
+  navigation: ProfileScreenNavigationProp;
+  }
+
+const ProfileScreen = ({navigation}: ProfileScreenProps) => {
 
   const onHandlePress = () => {
     Alert.alert('Pressed');

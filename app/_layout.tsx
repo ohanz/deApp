@@ -7,12 +7,14 @@ import ProfileScreen from "@/app/ProfileScreen";
 import HomeScreen from "@/app/HomeScreen";
 import SignUp from "./SignUp";
 import Login from "./Login";
-import launchScreen from '@/app/launchScreen';
 
 export type RootStackParamList = {
+  Launch: undefined;
   Landing: undefined;
   Login: undefined;
   SignUp: undefined;
+  Profile: undefined;
+  Home: undefined;
 }
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -20,13 +22,13 @@ const Stack = createStackNavigator<RootStackParamList>();
 export default function RootLayout() {
   return (
     // <NavigationContainer>
-    <Stack.Navigator initialRouteName="launchScreen">
-       <Stack.Screen name="launchScreen" component={launchScreen} />
-       <Stack.Screen name="HomeScreen" component={HomeScreen} />
-       <Stack.Screen name="LandingScreen" component={LandScreen} />
+    <Stack.Navigator initialRouteName="Launch">
+       <Stack.Screen name="Launch" component={LaunchScreen} />
+       <Stack.Screen name="Home" component={HomeScreen} />
+       <Stack.Screen name="Landing" component={LandScreen} />
        <Stack.Screen name="Login" component={Login} />
        <Stack.Screen name="SignUp" component={SignUp} />
-       <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
+       <Stack.Screen name="Profile" component={ProfileScreen} />
     </Stack.Navigator>
     // </NavigationContainer>
   );

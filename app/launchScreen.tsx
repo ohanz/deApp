@@ -1,3 +1,5 @@
+import { StackNavigationProp } from "@react-navigation/stack";
+import { RootStackParamList } from "./_layout";
 import { StyleSheet, View, Text } from "react-native";
 
 
@@ -16,9 +18,19 @@ const Styles = StyleSheet.create({
     }
 })
 
+type LaunchScreenNavigationProp = StackNavigationProp<RootStackParamList,'Launch'
+>;
 
-const launchScreen = () => {
+interface LaunchScreenProps {
+  navigation: LaunchScreenNavigationProp;
+  }
+  
 
+const launchScreen = ({navigation}: LaunchScreenProps) => {
+
+  setTimeout(() => {
+    navigation.navigate('Landing');
+  }, 2000)
    
 
 return(
